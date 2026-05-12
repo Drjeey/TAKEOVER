@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The TAKEOVER EA — Event Strategy & Web Design</title>
+  <meta name="description" content="The TAKEOVER EA introduces EA party culture to Nairobi. Wild theme parties, exclusive daycations, top DJs. R&B Days • Dancehall Nights • Spicy Amapiano." />
+
+  <!-- Preconnect for CDN performance -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+
+  <link rel="stylesheet" href="style.css" />
+  <!-- Ensure reveal elements are visible if JS fails to load -->
+  <noscript><style>.reveal-up,.reveal-left,.reveal-right{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       FLOATING NAVBAR
+  ═══════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="The TAKEOVER EA Home">
+        <!-- SWAP: Replace this SVG with your logo PNG by adding <img src="logo.png" alt="The TAKEOVER EA" /> -->
+        <div class="logo-box">
+          <span class="logo-the">THE</span>
+          <span class="logo-takeover">TAKEOVER</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#experiences" class="nav-link">Experiences</a></li>
+        <li><a href="#services"    class="nav-link">Services</a></li>
+        <li><a href="#vibe"        class="nav-link">The Vibe</a></li>
+        <li><a href="#contact"     class="nav-link">Contact</a></li>
+      </ul>
+
+      <a href="https://ticketdaddy.io/ev/eventnzaQsoJ_3Y" target="_blank" rel="noopener" class="btn btn-nav">
+        Book Now
+      </a>
+
+      <button class="hamburger" id="hamburger"
+              aria-label="Toggle navigation menu"
+              aria-expanded="false"
+              aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobileMenu"
+       role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <ul>
+      <li><a href="#experiences" class="mobile-link">Experiences</a></li>
+      <li><a href="#services"    class="mobile-link">Services</a></li>
+      <li><a href="#vibe"        class="mobile-link">The Vibe</a></li>
+      <li><a href="#contact"     class="mobile-link">Contact</a></li>
+      <li><a href="https://ticketdaddy.io/ev/eventnzaQsoJ_3Y" target="_blank" rel="noopener" class="btn btn-primary mobile-cta">Book Now</a></li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       HERO SECTION — Three.js canvas lives here
+  ═══════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <!-- Three.js renders into this canvas -->
+    <canvas id="heroCanvas"></canvas>
+
+    <!-- Radial gradient overlays for depth -->
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content container">
+      <p class="hero-eyebrow reveal-up">Nairobi's Newest Wave</p>
+      <h1 class="hero-headline reveal-up">
+        We Don't Just<br />
+        <span class="gradient-text">Throw Parties.</span><br />
+        We Engineer Them.
+      </h1>
+      <p class="hero-sub reveal-up">
+        Wild theme parties &bull; Exclusive daycations &bull; Top UG &amp; Kenyan DJs<br />
+        <em>R&amp;B Days · Dancehall Nights · Spicy Amapiano</em>
+      </p>
+      <div class="hero-cta reveal-up">
+        <a href="https://ticketdaddy.io/ev/eventnzaQsoJ_3Y" target="_blank" rel="noopener" class="btn btn-primary">
+          Get Your Ticket
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#experiences" class="btn btn-ghost">Explore Events</a>
+      </div>
+
+      <!-- Scroll cue -->
+      <div class="scroll-cue" aria-hidden="true">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </div>
+
+    <!-- Floating accent badges -->
+    <div class="hero-badge badge-left glass reveal-left">
+      <span class="badge-dot"></span>
+      <span>171 followers &amp; growing</span>
+    </div>
+    <div class="hero-badge badge-right glass reveal-right">
+      <span class="badge-icon">🔥</span>
+      <span>EA Party Culture · Nairobi</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       TICKER / MARQUEE STRIP
+  ═══════════════════════════════════════════ -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-track">
+      <span>THE TAKEOVER EA</span>
+      <span class="ticker-dot">✦</span>
+      <span>THEME PARTIES</span>
+      <span class="ticker-dot">✦</span>
+      <span>DAYCATIONS</span>
+      <span class="ticker-dot">✦</span>
+      <span>TOP DJS</span>
+      <span class="ticker-dot">✦</span>
+      <span>R&amp;B DAYS</span>
+      <span class="ticker-dot">✦</span>
+      <span>DANCEHALL NIGHTS</span>
+      <span class="ticker-dot">✦</span>
+      <span>AMAPIANO</span>
+      <span class="ticker-dot">✦</span>
+      <span>NAIROBI</span>
+      <span class="ticker-dot">✦</span>
+      <!-- Duplicate for seamless loop -->
+      <span>THE TAKEOVER EA</span>
+      <span class="ticker-dot">✦</span>
+      <span>THEME PARTIES</span>
+      <span class="ticker-dot">✦</span>
+      <span>DAYCATIONS</span>
+      <span class="ticker-dot">✦</span>
+      <span>TOP DJS</span>
+      <span class="ticker-dot">✦</span>
+      <span>R&amp;B DAYS</span>
+      <span class="ticker-dot">✦</span>
+      <span>DANCEHALL NIGHTS</span>
+      <span class="ticker-dot">✦</span>
+      <span>AMAPIANO</span>
+      <span class="ticker-dot">✦</span>
+      <span>NAIROBI</span>
+      <span class="ticker-dot">✦</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       EXPERIENCES — Bento Grid
+  ═══════════════════════════════════════════ -->
+  <section class="experiences" id="experiences">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow reveal-up">What We Do</p>
+        <h2 class="section-title reveal-up">Built for the<br /><span class="gradient-text">Bold &amp; the Beautiful</span></h2>
+      </div>
+
+      <div class="bento-grid">
+
+        <!-- Card 1 — Theme Parties (Large) -->
+        <div class="bento-card bento-large reveal-up" data-delay="0">
+          <!-- SWAP: Add background-image: url('images/theme-party.jpg') in style or inline -->
+          <div class="card-bg" style="background: linear-gradient(135deg, rgba(255,0,127,0.25) 0%, rgba(0,0,0,0.8) 100%);"></div>
+          <div class="card-content">
+            <span class="card-tag">01 — Signature</span>
+            <h3>Wild Theme Parties</h3>
+            <p>Immersive concepts. Curated playlists. Every event tells a story you'll still be talking about weeks later.</p>
+            <div class="card-meta">
+              <span class="pill">🎭 Masquerade</span>
+              <span class="pill">🌴 Tropical</span>
+              <span class="pill">🖤 All Black</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 — Daycations -->
+        <div class="bento-card reveal-up" data-delay="0.1">
+          <div class="card-bg" style="background: linear-gradient(135deg, rgba(255,140,0,0.3) 0%, rgba(0,0,0,0.85) 100%);"></div>
+          <div class="card-content">
+            <span class="card-tag">02</span>
+            <h3>Exclusive<br />Daycations ☀️</h3>
+            <p>Sun-soaked escapes with your squad. Good vibes from noon to sunset.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 — Stat -->
+        <div class="bento-card bento-stat reveal-up" data-delay="0.15">
+          <div class="stat-number gradient-text">6</div>
+          <div class="stat-label">Events<br />Delivered</div>
+          <div class="stat-sub">and growing fast 🔥</div>
+        </div>
+
+        <!-- Card 4 — DJs -->
+        <div class="bento-card reveal-up" data-delay="0.2">
+          <div class="card-bg" style="background: linear-gradient(135deg, rgba(100,0,200,0.3) 0%, rgba(0,0,0,0.9) 100%);"></div>
+          <div class="card-content">
+            <span class="card-tag">03</span>
+            <h3>Top UG &amp; Kenyan DJs 🎧</h3>
+            <p>Hometown UG heat meets Nairobi's finest. Every set is engineered to move the crowd.</p>
+          </div>
+        </div>
+
+        <!-- Card 5 — Music Policy (wide) -->
+        <div class="bento-card bento-wide reveal-up" data-delay="0.25">
+          <div class="card-content card-music">
+            <span class="card-tag">Music Policy</span>
+            <div class="music-pills">
+              <span class="music-pill rose">R&amp;B Days</span>
+              <span class="music-pill orange">Dancehall Nights</span>
+              <span class="music-pill purple">Spicy Amapiano</span>
+            </div>
+            <p class="music-sub">The right genre at the right hour — always.</p>
+          </div>
+        </div>
+
+        <!-- Card 6 — Citrus & Rose Brunch event card -->
+        <div class="bento-card bento-event reveal-up" data-delay="0.3">
+          <div class="card-bg" style="background: linear-gradient(160deg, rgba(255,0,127,0.2) 0%, rgba(255,140,0,0.15) 50%, rgba(0,0,0,0.85) 100%);"></div>
+          <div class="card-content">
+            <span class="card-tag upcoming">🗓 Upcoming</span>
+            <h3>Citrus &amp; Rose Brunch</h3>
+            <p class="event-date">29th May 2026 · Gates 11AM – 5PM</p>
+            <p>Good vibes · Good music · Unforgettable memories. Orchid Bar &amp; Lounge, Nairobi.</p>
+            <a href="https://ticketdaddy.io/ev/eventnzaQsoJ_3Y" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Get Tickets</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SERVICES
+  ═══════════════════════════════════════════ -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow reveal-up">What We Build</p>
+        <h2 class="section-title reveal-up">Two Lanes.<br /><span class="gradient-text">One Vision.</span></h2>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card reveal-left">
+          <div class="service-icon">🎪</div>
+          <h3>Event Strategy</h3>
+          <ul class="service-list">
+            <li>Concept &amp; Theme Development</li>
+            <li>Venue Sourcing &amp; Logistics</li>
+            <li>DJ &amp; Artist Booking</li>
+            <li>Ticket Sales Management</li>
+            <li>On-ground Coordination</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost btn-sm">Let's Plan →</a>
+        </div>
+
+        <div class="service-card service-card-center reveal-up">
+          <div class="service-icon">💻</div>
+          <h3>Web Design</h3>
+          <ul class="service-list">
+            <li>Brand Identity &amp; Logos</li>
+            <li>Landing Pages &amp; Sites</li>
+            <li>Event Microsites</li>
+            <li>Social Media Flyers</li>
+            <li>Content Strategy</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-sm">Start a Project →</a>
+        </div>
+
+        <div class="service-card reveal-right">
+          <div class="service-icon">🔥</div>
+          <h3>Full Takeover</h3>
+          <ul class="service-list">
+            <li>End-to-End Event Execution</li>
+            <li>Digital Presence Setup</li>
+            <li>Marketing &amp; Promotion</li>
+            <li>Brand Partnerships</li>
+            <li>Post-event Analytics</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost btn-sm">Go All In →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       THE VIBE — Full-bleed quote / manifesto
+  ═══════════════════════════════════════════ -->
+  <section class="vibe" id="vibe">
+    <canvas id="vibeCanvas"></canvas>
+    <div class="vibe-overlay"></div>
+    <div class="container vibe-content">
+      <p class="section-eyebrow reveal-up">The Manifesto</p>
+      <blockquote class="vibe-quote reveal-up">
+        "This isn't just<br />
+        an event.<br />
+        It's a new wave<br />
+        of <span class="gradient-text">party culture</span><br />
+        in Nairobi."
+      </blockquote>
+      <p class="vibe-sub reveal-up">
+        The TAKEOVER EA brings the real UG party culture home — raw energy,
+        curated aesthetics, and an atmosphere you can't manufacture.
+        Every event is intentional. Every detail matters.
+      </p>
+      <a href="https://www.instagram.com/the_takeover_ea" target="_blank" rel="noopener" class="btn btn-ghost reveal-up">
+        Follow the Journey @the_takeover_ea
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SOCIAL PROOF / NEXT EVENT CTA
+  ═══════════════════════════════════════════ -->
+  <section class="next-event">
+    <div class="container">
+      <div class="event-cta-card reveal-up">
+        <div class="event-cta-left">
+          <p class="section-eyebrow">Next Event</p>
+          <h2>Citrus &amp; Rose Brunch</h2>
+          <p class="event-detail">29 May 2026 &nbsp;·&nbsp; Orchid Bar &amp; Lounge &nbsp;·&nbsp; 11AM – 5PM</p>
+          <p class="event-detail">Table of 4 — <strong>KSH 14,000</strong> &nbsp;|&nbsp; Individual — <strong>KSH 3,500</strong></p>
+        </div>
+        <div class="event-cta-right">
+          <p class="sold-out-note">🔥 Tickets moving fast</p>
+          <a href="https://ticketdaddy.io/ev/eventnzaQsoJ_3Y" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+            Reserve Your Spot
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <p class="event-link-sub">via ticketdaddy.io</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CONTACT
+  ═══════════════════════════════════════════ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow reveal-up">Get In Touch</p>
+        <h2 class="section-title reveal-up">Ready to Plan<br /><span class="gradient-text">Your Takeover?</span></h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <p class="contact-lead">Want to host an event, collaborate, or just vibe with us? Drop us a message or reach out directly below.</p>
+          <div class="contact-links">
+            <!-- SWAP: Replace +254700000000 with the real WhatsApp number (digits only, no spaces or +) -->
+            <a href="https://wa.me/254700000000?text=Hi%20The%20TAKEOVER%20EA%2C%20I%27d%20like%20to%20enquire%20about%20an%20upcoming%20event." target="_blank" rel="noopener" class="contact-item contact-item-whatsapp">
+              <span class="contact-icon">💬</span>
+              <div>
+                <strong>WhatsApp</strong>
+                <span>Quick message us</span>
+              </div>
+            </a>
+            <a href="https://www.instagram.com/the_takeover_ea" target="_blank" rel="noopener" class="contact-item">
+              <span class="contact-icon">📸</span>
+              <div>
+                <strong>Instagram</strong>
+                <span>@the_takeover_ea</span>
+              </div>
+            </a>
+            <a href="https://ticketdaddy.io/ev/eventnzaQsoJ_3Y" target="_blank" rel="noopener" class="contact-item">
+              <span class="contact-icon">🎟</span>
+              <div>
+                <strong>Tickets</strong>
+                <span>ticketdaddy.io</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- SWAP: Replace YOUR_FORM_ID with your Formspree form ID (get it free at formspree.io) -->
+        <form class="contact-form reveal-right" id="contactForm" novalidate
+              data-formspree-id="YOUR_FORM_ID">
+          <div class="form-group" id="fg-name">
+            <label for="fname">Your Name</label>
+            <input
+              type="text" id="fname" name="name"
+              placeholder="e.g. Amara"
+              autocomplete="name"
+              maxlength="100"
+              required
+              aria-required="true"
+              aria-describedby="fname-error"
+            />
+            <span class="field-error" id="fname-error" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="form-group" id="fg-contact">
+            <label for="femail">Email or WhatsApp number</label>
+            <input
+              type="text" id="femail" name="contact"
+              placeholder="you@email.com or +254 7XX XXX XXX"
+              autocomplete="email"
+              maxlength="120"
+              required
+              aria-required="true"
+              aria-describedby="femail-hint femail-error"
+            />
+            <small id="femail-hint" class="field-hint">We reply via whichever you provide.</small>
+            <span class="field-error" id="femail-error" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="form-group">
+            <label for="ftype">What's this about?</label>
+            <select id="ftype" name="type" autocomplete="off">
+              <option value="">Select one (optional)</option>
+              <option>Attending an event</option>
+              <option>Hosting / Event Strategy</option>
+              <option>Web Design</option>
+              <option>Full Takeover Package</option>
+              <option>Collaboration / Partnership</option>
+              <option>Press / Media</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fmsg">Message <span class="label-optional">(optional)</span></label>
+            <textarea
+              id="fmsg" name="message"
+              rows="4"
+              maxlength="2000"
+              placeholder="Tell us what you have in mind..."
+              aria-describedby="fmsg-count"
+            ></textarea>
+            <span class="char-count" id="fmsg-count" aria-live="polite"></span>
+          </div>
+          <button type="submit" id="formSubmit" class="btn btn-primary btn-full">
+            <span class="btn-label">Send It</span>
+            <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg class="btn-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke-opacity="0.3"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
+          </button>
+          <p class="form-note" id="formNote" role="alert" aria-live="polite"></p>
+
+          <div class="form-divider" aria-hidden="true"><span>or reach us directly</span></div>
+          <!-- SWAP: Replace +254700000000 with the real WhatsApp number -->
+          <a href="https://wa.me/254700000000?text=Hi%20The%20TAKEOVER%20EA%2C%20I%27d%20like%20to%20enquire%20about%20an%20event." target="_blank" rel="noopener" class="btn btn-whatsapp btn-full">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            Chat on WhatsApp
+          </a>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <div class="logo-box logo-box-sm">
+          <span class="logo-the">THE</span>
+          <span class="logo-takeover">TAKEOVER</span>
+        </div>
+        <span class="footer-ea">EA</span>
+      </div>
+      <p class="footer-tagline">Introducing EA party culture to Nairobi. 🔥</p>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/the_takeover_ea" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://ticketdaddy.io/ev/eventnzaQsoJ_3Y" target="_blank" rel="noopener">Tickets</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 The TAKEOVER EA. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Cursor glow follower -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- Mobile sticky CTA bar (hidden on desktop via CSS) -->
+  <div class="mobile-cta-bar" aria-hidden="true">
+    <a href="#contact" class="btn btn-primary">Book Your Spot</a>
+  </div>
+
+  <script src="main.js" type="module"></script>
+</body>
+</html>
