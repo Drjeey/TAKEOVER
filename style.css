@@ -978,6 +978,10 @@ body {
 .reveal-left,
 .reveal-right { opacity: 0; }
 
+/* Hero elements start visible — GSAP animates from y offset, not opacity:0 */
+.hero-content .reveal-up,
+.hero-badge { opacity: 1; }
+
 /* ── Responsive ───────────────────────────────────────── */
 @media (max-width: 1024px) {
   .bento-grid {

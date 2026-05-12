@@ -473,12 +473,11 @@ function initGSAP() {
     });
   });
 
-  /* ── Scroll storytelling: hero headline chars ── */
+  /* ── Scroll parallax: hero headline drifts up as hero exits ── */
   const headline = document.querySelector('.hero-headline');
   if (headline) {
     gsap.to(headline, {
-      y: -40,
-      opacity: 0.3,
+      y: -60,
       ease: 'none',
       scrollTrigger: {
         trigger: '.hero',
